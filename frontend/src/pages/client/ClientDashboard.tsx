@@ -3,19 +3,21 @@ import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { getClientDashboard } from '../../services/api'
 import { Users, UserCheck, Calendar, FileCheck, CheckCircle, TrendingUp, LogOut, Building2, BarChart3, Clock } from 'lucide-react'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function ClientDashboard() {
   const navigate = useNavigate()
+  const { user, signOut } = useAuth()
 
   const { data, isLoading } = useQuery({
     queryKey: ['client-dashboard'],
     queryFn: getClientDashboard,
   })
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOut()
     localStorage.removeItem('role')
     localStorage.removeItem('client_id')
-    toast.success('Logged out successfully')
     navigate('/')
   }
 

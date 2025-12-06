@@ -1,5 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 
+// Components
+import ProtectedRoute from './components/ProtectedRoute'
+
 // Auth Pages
 import SplashScreen from './pages/SplashScreen'
 import AuthPage from './pages/auth/AuthPage'
@@ -21,13 +24,25 @@ export default function AppRoutes() {
       <Route path="/auth/:role" element={<AuthPage />} />
 
       {/* Candidate Dashboard */}
-      <Route path="/candidate/profile" element={<CandidateProfile />} />
+      <Route path="/candidate/profile" element={
+        <ProtectedRoute>
+          <CandidateProfile />
+        </ProtectedRoute>
+      } />
 
       {/* Recruiter Dashboard */}
-      <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
+      <Route path="/recruiter/dashboard" element={
+        <ProtectedRoute>
+          <RecruiterDashboard />
+        </ProtectedRoute>
+      } />
 
       {/* Client Dashboard */}
-      <Route path="/client/dashboard" element={<ClientDashboard />} />
+      <Route path="/client/dashboard" element={
+        <ProtectedRoute>
+          <ClientDashboard />
+        </ProtectedRoute>
+      } />
 
       {/* 404 */}
       <Route path="*" element={<Navigate to="/" replace />} />

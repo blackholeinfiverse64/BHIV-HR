@@ -3,19 +3,21 @@ import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { getJobs } from '../../services/api'
 import { Briefcase, Users, TrendingUp, LogOut, Plus, Search, Filter, Calendar } from 'lucide-react'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function RecruiterDashboard() {
   const navigate = useNavigate()
+  const { user, signOut } = useAuth()
 
   const { data, isLoading } = useQuery({
     queryKey: ['recruiter-jobs'],
     queryFn: getJobs,
   })
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOut()
     localStorage.removeItem('role')
     localStorage.removeItem('recruiter_id')
-    toast.success('Logged out successfully')
     navigate('/')
   }
 

@@ -3,12 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Zap, Mail, Lock, User, Phone, MapPin, ArrowLeft } from 'lucide-react'
 import FormInput from '../../components/FormInput'
 import toast from 'react-hot-toast'
+import { useAuth } from '../../contexts/AuthContext'
 
 type RoleType = 'candidate' | 'recruiter' | 'client'
 
 export default function AuthPage() {
   const { role } = useParams<{ role: RoleType }>()
   const navigate = useNavigate()
+  const { signIn, signUp } = useAuth()
   const [isLogin, setIsLogin] = useState(true)
   const [loading, setLoading] = useState(false)
 
@@ -53,14 +55,24 @@ export default function AuthPage() {
     e.preventDefault()
     setLoading(true)
 
-    // TODO: Integrate with Supabase authentication
-    setTimeout(() => {
-      toast.success('Login successful!')
+    try {
+      const { user, error } = await signIn(loginData.email, loginData.password)
+      
+      if (error || !user) {
+        setLoading(false)
+        return
+      }
+
+      // Store role in localStorage
       localStorage.setItem('role', role || 'candidate')
-      localStorage.setItem(`${role}_id`, `demo-${role}-${Date.now()}`)
+      localStorage.setItem(`${role}_id`, user.id)
+      
       navigate(config.dashboardPath)
+    } catch (error) {
+      toast.error('Login failed')
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -78,14 +90,34 @@ export default function AuthPage() {
 
     setLoading(true)
 
-    // TODO: Integrate with Supabase authentication
-    setTimeout(() => {
-      toast.success('Account created successfully!')
+    try {
+      const { user, error } = await signUp(
+        signupData.email,
+        signupData.password,
+        {
+          name: signupData.name,
+          phone: signupData.phone,
+          location: signupData.location,
+          role: role || 'candidate',
+        }
+      )
+
+      if (error || !user) {
+        setLoading(false)
+        return
+      }
+
+      // Store role in localStorage
       localStorage.setItem('role', role || 'candidate')
-      localStorage.setItem(`${role}_id`, `demo-${role}-${Date.now()}`)
+      localStorage.setItem(`${role}_id`, user.id)
+
+      // Navigate to dashboard (or show email verification message)
       navigate(config.dashboardPath)
+    } catch (error) {
+      toast.error('Signup failed')
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
 
   return (
