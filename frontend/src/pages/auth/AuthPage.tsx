@@ -30,19 +30,19 @@ export default function AuthPage() {
     candidate: {
       title: 'Candidate',
       gradient: 'from-primary to-primary/80',
-      loginPath: '/candidate/profile',
-      description: 'Find your perfect job match',
+      dashboardPath: '/candidate/profile',
+      description: 'Find your dream job',
     },
     recruiter: {
       title: 'Recruiter',
       gradient: 'from-secondary to-secondary/80',
-      loginPath: '/recruiter/dashboard',
+      dashboardPath: '/recruiter/dashboard',
       description: 'Manage your hiring pipeline',
     },
     client: {
       title: 'Client',
       gradient: 'from-info to-info/80',
-      loginPath: '/client/dashboard',
+      dashboardPath: '/client/dashboard',
       description: 'Review and approve candidates',
     },
   }
@@ -56,9 +56,9 @@ export default function AuthPage() {
     // TODO: Integrate with Supabase authentication
     setTimeout(() => {
       toast.success('Login successful!')
-      localStorage.setItem(`${role}_id`, loginData.email)
-      localStorage.setItem('user_role', role || 'candidate')
-      navigate(config.loginPath)
+      localStorage.setItem('role', role || 'candidate')
+      localStorage.setItem(`${role}_id`, `demo-${role}-${Date.now()}`)
+      navigate(config.dashboardPath)
       setLoading(false)
     }, 1000)
   }
@@ -81,9 +81,9 @@ export default function AuthPage() {
     // TODO: Integrate with Supabase authentication
     setTimeout(() => {
       toast.success('Account created successfully!')
-      localStorage.setItem(`${role}_id`, signupData.email)
-      localStorage.setItem('user_role', role || 'candidate')
-      navigate(config.loginPath)
+      localStorage.setItem('role', role || 'candidate')
+      localStorage.setItem(`${role}_id`, `demo-${role}-${Date.now()}`)
+      navigate(config.dashboardPath)
       setLoading(false)
     }, 1000)
   }

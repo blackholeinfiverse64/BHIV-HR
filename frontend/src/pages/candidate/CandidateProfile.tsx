@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { getCandidateProfile, updateCandidateProfile } from '../../services/api'
 import FormInput from '../../components/FormInput'
-import { User, Upload, Save } from 'lucide-react'
+import { User, Upload, Save, LogOut, Briefcase, Clock, CheckCircle, Award } from 'lucide-react'
 
 export default function CandidateProfile() {
+  const navigate = useNavigate()
   const candidateId = localStorage.getItem('candidate_id') || 'demo-candidate'
   
   const [formData, setFormData] = useState({
@@ -158,6 +160,8 @@ export default function CandidateProfile() {
           </button>
         </div>
       </form>
+        </div>
+      </div>
     </div>
   )
 }
