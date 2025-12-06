@@ -160,8 +160,6 @@ export default function CandidateProfile() {
           </button>
         </div>
       </form>
-        </div>
-      </div>
     </div>
   )
 }
