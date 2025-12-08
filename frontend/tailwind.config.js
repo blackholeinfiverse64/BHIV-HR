@@ -112,6 +112,31 @@ export default {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.7' },
         },
+        'neon-pulse': {
+          '0%, 100%': { 
+            opacity: '1', 
+            boxShadow: '0 0 20px hsl(280 100% 70% / 0.3)' 
+          },
+          '50%': { 
+            opacity: '0.8', 
+            boxShadow: '0 0 40px hsl(280 100% 70% / 0.6)' 
+          },
+        },
+        'holo-shimmer': {
+          '0%': { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+        'glitch': {
+          '0%, 100%': { transform: 'translate(0)' },
+          '20%': { transform: 'translate(-2px, 2px)' },
+          '40%': { transform: 'translate(-2px, -2px)' },
+          '60%': { transform: 'translate(2px, 2px)' },
+          '80%': { transform: 'translate(2px, -2px)' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -121,6 +146,10 @@ export default {
         'scale-in': 'scale-in 0.2s ease-out',
         'slide-in-right': 'slide-in-right 0.3s ease-out',
         'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
+        'neon-pulse': 'neon-pulse 2s ease-in-out infinite',
+        'holo-shimmer': 'holo-shimmer 3s linear infinite',
+        'glitch': 'glitch 0.3s ease-in-out',
+        'float': 'float 3s ease-in-out infinite',
       },
       transitionTimingFunction: {
         'neo': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -135,6 +164,9 @@ export default {
         'glow-primary': '0 0 30px -5px hsl(160 84% 39% / 0.3)',
         'glow-secondary': '0 0 30px -5px hsl(262 83% 58% / 0.3)',
         'glow-accent': '0 0 30px -5px hsl(38 92% 50% / 0.3)',
+        'neon-primary': '0 0 40px -10px hsl(280 100% 70% / 0.3), 0 0 60px -10px hsl(280 100% 70% / 0.2)',
+        'neon-secondary': '0 0 40px -10px hsl(180 100% 50% / 0.3), 0 0 60px -10px hsl(180 100% 50% / 0.2)',
+        'neon-accent': '0 0 40px -10px hsl(320 100% 60% / 0.3), 0 0 60px -10px hsl(320 100% 60% / 0.2)',
       },
     },
   },

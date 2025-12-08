@@ -1,22 +1,28 @@
+/* stylelint-disable at-rule-no-unknown */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
 
 @layer base {
-  :root {
+  :root,
+  [data-theme="light"] {
     /* Light Mode Colors */
     --background: 220 17% 98%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
+    --card-accent: 220 17% 96%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
     --primary: 160 84% 39%;
     --primary-foreground: 0 0% 100%;
     --secondary: 262 83% 58%;
     --secondary-foreground: 0 0% 100%;
+    --tertiary: 38 92% 50%;
+    --tertiary-foreground: 0 0% 100%;
     --muted: 220 17% 96%;
     --muted-foreground: 220 9% 46%;
     --accent: 38 92% 50%;
@@ -42,28 +48,38 @@
     --sidebar-border: 220 13% 91%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(160 84% 39%), hsl(160 84% 49%));
-    --gradient-secondary: linear-gradient(135deg, hsl(262 83% 58%), hsl(262 83% 68%));
-    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%), hsl(38 92% 60%));
+    --gradient-primary: linear-gradient(135deg, hsl(160 84% 39%) 0%, hsl(160 84% 49%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(262 83% 68%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(38 92% 60%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 17% 98%) 100%);
 
-    /* Neomorphic Shadows */
-    --neo-shadow-light: 8px 8px 16px hsl(220 13% 85%), -8px -8px 16px hsl(0 0% 100%);
-    --neo-shadow-hover: 12px 12px 24px hsl(220 13% 80%), -12px -12px 24px hsl(0 0% 100%);
+    /* Glow Shadows */
     --shadow-glow-primary: 0 0 30px -5px hsl(160 84% 39% / 0.3);
+    --shadow-glow-secondary: 0 0 30px -5px hsl(262 83% 58% / 0.3);
+    --shadow-glow-accent: 0 0 30px -5px hsl(38 92% 50% / 0.3);
+
+    /* Neomorphic Shadows (Light Mode) */
+    --neo-shadow-light: 8px 8px 16px hsl(220 13% 85%), -8px -8px 16px hsl(0 0% 100%);
+    --neo-shadow-inset: inset 4px 4px 8px hsl(220 13% 85%), inset -4px -4px 8px hsl(0 0% 100%);
+    --neo-shadow-hover: 12px 12px 24px hsl(220 13% 80%), -12px -12px 24px hsl(0 0% 100%);
   }
 
-  .dark {
+  .dark,
+  [data-theme="dark"] {
     /* Dark Mode Colors */
     --background: 0 0% 7%;
     --foreground: 0 0% 100%;
     --card: 0 0% 12%;
     --card-foreground: 0 0% 100%;
+    --card-accent: 0 0% 15%;
     --popover: 0 0% 12%;
     --popover-foreground: 0 0% 100%;
     --primary: 160 84% 45%;
     --primary-foreground: 0 0% 100%;
     --secondary: 262 83% 63%;
     --secondary-foreground: 0 0% 100%;
+    --tertiary: 38 92% 55%;
+    --tertiary-foreground: 0 0% 100%;
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 64%;
     --accent: 38 92% 55%;
@@ -87,8 +103,14 @@
     --sidebar-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 18%;
 
-    /* Neomorphic Shadows (Dark) */
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(160 84% 45%) 0%, hsl(160 84% 55%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(262 83% 63%) 0%, hsl(262 83% 73%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(38 92% 55%) 0%, hsl(38 92% 65%) 100%);
+
+    /* Neomorphic Shadows (Dark Mode) */
     --neo-shadow-light: 10px 10px 20px hsl(0 0% 3%), -10px -10px 20px hsl(0 0% 15%);
+    --neo-shadow-inset: inset 6px 6px 12px hsl(0 0% 3%), inset -6px -6px 12px hsl(0 0% 15%);
     --neo-shadow-hover: 15px 15px 30px hsl(0 0% 2%), -15px -15px 30px hsl(0 0% 18%);
   }
 }
@@ -104,6 +126,7 @@
   
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -149,20 +172,16 @@
   /* Neomorphic Card */
   .neo-card {
     @apply rounded-2xl bg-card text-card-foreground transition-all duration-300;
-    box-shadow: var(--neo-shadow-light);
   }
 
   .neo-card:hover {
     @apply scale-[1.02];
-    box-shadow: var(--neo-shadow-hover);
   }
 
   .dark .neo-card {
-    box-shadow: var(--neo-shadow-light);
   }
 
   .dark .neo-card:hover {
-    box-shadow: var(--neo-shadow-hover);
   }
 
   /* Glassmorphic Effect */
@@ -184,6 +203,62 @@
   /* Glow Effects */
   .glow-primary {
     box-shadow: var(--shadow-glow-primary);
+  }
+
+  /* Universe Theme Specific Utilities */
+  [data-theme="universe"] .neo-card {
+    @apply border-2 border-primary/30 backdrop-blur-xl bg-gradient-to-br from-card via-card to-accent/20;
+  }
+
+  [data-theme="universe"] .neo-card:hover {
+    @apply border-primary/60;
+  }
+
+  [data-theme="universe"] .glass {
+    @apply backdrop-blur-xl bg-card/50 border-2 border-secondary/40;
+  }
+
+  .neon-card {
+    @apply rounded-2xl bg-card border-2 border-primary/30 backdrop-blur-xl;
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--card-accent)));
+  }
+
+  .neon-card:hover {
+    @apply border-primary/60;
+  }
+
+  .cosmic-gradient {
+    background-image: var(--gradient-cosmic);
+  }
+
+  .aurora-gradient {
+    background-image: var(--gradient-aurora);
+  }
+
+  .neon-border {
+    @apply border-2 border-primary/50;
+    box-shadow: 0 0 20px hsl(280 100% 70% / 0.3);
+  }
+
+  .neon-border:hover {
+    @apply border-primary;
+    box-shadow: 0 0 30px hsl(280 100% 70% / 0.5);
+  }
+
+  .holographic-input {
+    @apply h-12 w-full rounded-xl border-2 border-secondary/40 bg-card/50 backdrop-blur-xl px-4 py-3;
+    @apply text-foreground font-medium transition-all duration-300;
+    @apply focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/50;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  [data-theme="universe"] .holographic-input:focus {
+    box-shadow: 0 0 30px hsl(180 100% 50% / 0.3);
+  }
+
+  .neon-glow-text {
+    @apply text-primary;
+    text-shadow: 0 0 20px hsl(280 100% 70% / 0.5);
   }
 
   /* Animation Delays */
@@ -217,8 +292,7 @@
   }
 
   .btn-primary:hover {
-    @apply shadow-xl scale-105;
-    box-shadow: 0 20px 40px -10px hsl(160 84% 39% / 0.4);
+    @apply scale-105;
   }
 
   .btn-primary:active {
@@ -230,11 +304,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl h-11 px-6 text-sm font-bold bg-secondary text-white hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300;
-  }
-
-  .btn-secondary:hover {
-    box-shadow: 0 20px 40px -10px hsl(262 83% 58% / 0.4);
+    @apply inline-flex items-center justify-center gap-2 rounded-xl h-11 px-6 text-sm font-bold bg-secondary text-white hover:scale-105 active:scale-95 transition-all duration-300;
   }
 
   .btn-outline {

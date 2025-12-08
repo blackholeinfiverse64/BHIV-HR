@@ -24,18 +24,24 @@ export default function Layout({ children, userType = 'candidate' }: LayoutProps
 
   return (
     <SidebarContext.Provider value={{ collapsed, setCollapsed }}>
-      <div className="min-h-screen bg-gray-50/50">
+      <div className="min-h-screen bg-background">
         <Navbar userType={userType} />
         <Sidebar userType={userType} />
         <main 
-          className={`pt-16 transition-all duration-300 ${
+          className={`pt-18 min-h-screen transition-all duration-300 px-6 py-8 ${
             collapsed ? 'ml-16' : 'ml-64'
           }`}
         >
-          <div className="p-8">
-            {children}
-          </div>
+          {children}
         </main>
+        
+        {/* Overlay for mobile */}
+        {!collapsed && (
+          <div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-20 lg:hidden"
+            onClick={() => setCollapsed(true)}
+          />
+        )}
       </div>
     </SidebarContext.Provider>
   )

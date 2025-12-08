@@ -4,80 +4,80 @@ import { Briefcase, Calendar, FileText, TrendingUp, Clock, CheckCircle } from 'l
 export default function CandidateDashboard() {
   return (
     <Layout userType="candidate">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="space-y-8 animate-fade-in">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Candidate Dashboard</h1>
-          <p className="text-gray-600">Welcome back! Here's your job search overview</p>
+        <div className="mb-8">
+          <h1 className="text-4xl font-heading font-bold text-foreground mb-3">Candidate Dashboard</h1>
+          <p className="text-muted-foreground text-lg font-medium">Welcome back! Here's your job search overview</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-purple-200/50 p-6 shadow-lg hover:shadow-xl transition-all">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="neo-card p-6 animate-fade-up">
             <div className="flex items-start justify-between mb-4">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                <Briefcase className="h-6 w-6 text-purple-600" />
+              <div className="h-14 w-14 rounded-xl flex items-center justify-center shadow-md" style={{ background: 'var(--gradient-primary)' }}>
+                <Briefcase className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xs font-bold text-purple-600 bg-purple-100 px-2 py-1 rounded-lg">+3 New</span>
+              <span className="badge badge-primary">+3 New</span>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">12</p>
-            <p className="text-sm text-gray-600">Active Applications</p>
+            <p className="text-4xl font-heading font-bold text-foreground mb-2">12</p>
+            <p className="text-sm font-medium text-muted-foreground">Active Applications</p>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-blue-200/50 p-6 shadow-lg hover:shadow-xl transition-all">
+          <div className="neo-card p-6 animate-fade-up animation-delay-100">
             <div className="flex items-start justify-between mb-4">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 flex items-center justify-center">
-                <Calendar className="h-6 w-6 text-blue-600" />
+              <div className="h-14 w-14 rounded-xl flex items-center justify-center shadow-md" style={{ background: 'var(--gradient-secondary)' }}>
+                <Calendar className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded-lg">This Week</span>
+              <span className="badge badge-secondary">This Week</span>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">3</p>
-            <p className="text-sm text-gray-600">Upcoming Interviews</p>
+            <p className="text-4xl font-heading font-bold text-foreground mb-2">3</p>
+            <p className="text-sm font-medium text-muted-foreground">Upcoming Interviews</p>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-green-200/50 p-6 shadow-lg hover:shadow-xl transition-all">
+          <div className="neo-card p-6 animate-fade-up animation-delay-200">
             <div className="flex items-start justify-between mb-4">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
-                <CheckCircle className="h-6 w-6 text-green-600" />
+              <div className="h-14 w-14 rounded-xl flex items-center justify-center shadow-md bg-gradient-to-br from-success to-success/80">
+                <CheckCircle className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-lg">66%</span>
+              <span className="badge badge-success">66%</span>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">8</p>
-            <p className="text-sm text-gray-600">Shortlisted</p>
+            <p className="text-4xl font-heading font-bold text-foreground mb-2">8</p>
+            <p className="text-sm font-medium text-muted-foreground">Shortlisted</p>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-orange-200/50 p-6 shadow-lg hover:shadow-xl transition-all">
+          <div className="neo-card p-6 animate-fade-up animation-delay-300">
             <div className="flex items-start justify-between mb-4">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
-                <TrendingUp className="h-6 w-6 text-orange-600" />
+              <div className="h-14 w-14 rounded-xl flex items-center justify-center shadow-md" style={{ background: 'var(--gradient-accent)' }}>
+                <TrendingUp className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xs font-bold text-orange-600 bg-orange-100 px-2 py-1 rounded-lg">88%</span>
+              <span className="badge badge-warning">88%</span>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">4.2</p>
-            <p className="text-sm text-gray-600">Avg Match Score</p>
+            <p className="text-4xl font-heading font-bold text-foreground mb-2">4.2</p>
+            <p className="text-sm font-medium text-muted-foreground">Avg Match Score</p>
           </div>
         </div>
 
         {/* Recent Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Recent Applications */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-purple-200/50 p-6 shadow-lg">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-purple-600" />
+          <div className="card-glass p-6 animate-fade-up animation-delay-400">
+            <h2 className="text-xl font-heading font-bold text-foreground mb-6 flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
               Recent Applications
             </h2>
             <div className="space-y-3">
               {[
-                { company: 'Tech Corp', position: 'Senior Developer', status: 'Reviewing', color: 'blue' },
-                { company: 'StartupXYZ', position: 'Full Stack Engineer', status: 'Shortlisted', color: 'green' },
-                { company: 'InnovateLabs', position: 'Frontend Lead', status: 'Interview', color: 'purple' },
+                { company: 'Tech Corp', position: 'Senior Developer', status: 'Reviewing', variant: 'info' },
+                { company: 'StartupXYZ', position: 'Full Stack Engineer', status: 'Shortlisted', variant: 'success' },
+                { company: 'InnovateLabs', position: 'Frontend Lead', status: 'Interview', variant: 'secondary' },
               ].map((app, idx) => (
-                <div key={idx} className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-gray-50 to-purple-50/30 border border-gray-200">
+                <div key={idx} className="flex items-center justify-between p-4 rounded-xl bg-card hover:bg-muted/30 border border-border transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
                   <div>
-                    <p className="font-bold text-gray-900">{app.company}</p>
-                    <p className="text-sm text-gray-600">{app.position}</p>
+                    <p className="font-bold text-foreground">{app.company}</p>
+                    <p className="text-sm text-muted-foreground">{app.position}</p>
                   </div>
-                  <span className={`px-3 py-1 rounded-lg text-xs font-bold bg-${app.color}-100 text-${app.color}-700`}>
+                  <span className={`badge badge-${app.variant}`}>
                     {app.status}
                   </span>
                 </div>
@@ -86,9 +86,9 @@ export default function CandidateDashboard() {
           </div>
 
           {/* Upcoming Interviews */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-blue-200/50 p-6 shadow-lg">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-blue-600" />
+          <div className="card-glass p-6 animate-fade-up animation-delay-500">
+            <h2 className="text-xl font-heading font-bold text-foreground mb-6 flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
               Upcoming Interviews
             </h2>
             <div className="space-y-3">
@@ -97,15 +97,15 @@ export default function CandidateDashboard() {
                 { company: 'StartupXYZ', date: 'Dec 12, 2025', time: '10:00 AM', type: 'HR Round' },
                 { company: 'InnovateLabs', date: 'Dec 15, 2025', time: '3:30 PM', type: 'Final Round' },
               ].map((interview, idx) => (
-                <div key={idx} className="flex items-start justify-between p-4 rounded-xl bg-gradient-to-r from-gray-50 to-blue-50/30 border border-gray-200">
+                <div key={idx} className="flex items-start justify-between p-4 rounded-xl bg-card hover:bg-muted/30 border border-border transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
                   <div className="flex items-start gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                      <Calendar className="h-5 w-5 text-blue-600" />
+                    <div className="h-11 w-11 rounded-xl bg-secondary/10 flex items-center justify-center">
+                      <Calendar className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900">{interview.company}</p>
-                      <p className="text-sm text-gray-600">{interview.type}</p>
-                      <p className="text-xs text-gray-500 flex items-center gap-1 mt-1">
+                      <p className="font-bold text-foreground">{interview.company}</p>
+                      <p className="text-sm text-muted-foreground">{interview.type}</p>
+                      <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                         <Clock className="h-3 w-3" />
                         {interview.date} • {interview.time}
                       </p>
@@ -118,33 +118,33 @@ export default function CandidateDashboard() {
         </div>
 
         {/* Profile Completion */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-purple-200/50 p-6 shadow-lg">
-          <div className="flex items-center justify-between mb-4">
+        <div className="neo-card p-6 animate-fade-up">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Profile Completion</h2>
-              <p className="text-sm text-gray-600">Complete your profile to increase visibility</p>
+              <h2 className="text-xl font-heading font-bold text-foreground">Profile Completion</h2>
+              <p className="text-sm text-muted-foreground mt-1">Complete your profile to increase visibility</p>
             </div>
-            <span className="text-3xl font-bold text-purple-600">85%</span>
+            <span className="text-3xl font-heading font-bold gradient-text">85%</span>
           </div>
-          <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-purple-600 to-pink-600 rounded-full transition-all" style={{ width: '85%' }} />
+          <div className="w-full h-3 bg-muted rounded-full overflow-hidden mb-6">
+            <div className="h-full rounded-full transition-all duration-500" style={{ width: '85%', background: 'var(--gradient-primary)' }} />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="flex items-center gap-2 text-sm">
-              <CheckCircle className="h-4 w-4 text-green-600" />
-              <span className="text-gray-700">Basic Info</span>
+              <CheckCircle className="h-5 w-5 text-success" />
+              <span className="text-foreground font-medium">Basic Info</span>
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <CheckCircle className="h-4 w-4 text-green-600" />
-              <span className="text-gray-700">Experience</span>
+              <CheckCircle className="h-5 w-5 text-success" />
+              <span className="text-foreground font-medium">Experience</span>
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <CheckCircle className="h-4 w-4 text-green-600" />
-              <span className="text-gray-700">Skills</span>
+              <CheckCircle className="h-5 w-5 text-success" />
+              <span className="text-foreground font-medium">Skills</span>
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <FileText className="h-4 w-4 text-gray-400" />
-              <span className="text-gray-400">Certifications</span>
+              <FileText className="h-5 w-5 text-muted-foreground" />
+              <span className="text-muted-foreground">Certifications</span>
             </div>
           </div>
         </div>
