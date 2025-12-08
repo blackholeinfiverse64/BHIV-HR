@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { getClientDashboard } from '../../services/api'
-import { Users, UserCheck, Calendar, FileCheck, CheckCircle, TrendingUp, LogOut, Building2, BarChart3, Clock } from 'lucide-react'
+import { Users, UserCheck, Calendar, FileCheck, CheckCircle, TrendingUp, Building2, BarChart3, Clock } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
+import Layout from '../../components/Layout'
 
 export default function ClientDashboard() {
   const navigate = useNavigate()
@@ -80,47 +81,19 @@ export default function ClientDashboard() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
-      {/* Header */}
-      <header className="bg-white border-b-2 border-green-200">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
-              <Building2 className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <h1 className="font-bold text-xl">Client Portal</h1>
-              <p className="text-sm text-gray-600">Track your hiring pipeline</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <button className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border-2 border-green-200 hover:border-green-400 hover:bg-green-50 font-medium transition-all">
-              <BarChart3 className="h-4 w-4" />
-              View Reports
-            </button>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-green-200 hover:border-green-400 hover:bg-green-50 transition-all"
-            >
-              <LogOut className="h-4 w-4" />
-              <span className="font-medium">Logout</span>
-            </button>
-          </div>
-        </div>
-      </header>
-
+    <Layout userType="client">
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {stats.map((stat, idx) => (
-            <div key={idx} className={`rounded-2xl border-2 ${stat.border} ${stat.bg} p-6 shadow-lg hover:scale-105 transition-transform`}>
+            <div key={idx} className={`rounded-2xl border-2 ${stat.border}/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all`}>
               <div className="flex flex-col items-center text-center">
-                <div className={`h-14 w-14 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-3`}>
+                <div className={`h-14 w-14 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-3 shadow-md`}>
                   <stat.icon className="h-7 w-7 text-white" />
                 </div>
-                <p className="text-3xl font-bold mb-1">{stat.value}</p>
-                <p className="text-xs text-gray-600 mb-2">{stat.label}</p>
-                <div className="flex items-center gap-1 text-xs text-green-600 font-medium">
+                <p className="text-3xl font-bold mb-1 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent">{stat.value}</p>
+                <p className="text-xs text-gray-600 mb-2 font-medium">{stat.label}</p>
+                <div className="flex items-center gap-1 text-xs text-green-600 font-semibold">
                   <TrendingUp className="h-3 w-3" />
                   <span>{stat.trend}</span>
                 </div>
@@ -132,8 +105,8 @@ export default function ClientDashboard() {
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Hiring Funnel */}
-          <div className="rounded-2xl bg-white border-2 border-green-200 p-6 shadow-lg">
-            <h2 className="text-2xl font-bold mb-6">Hiring Funnel</h2>
+          <div className="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-green-200/50 p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Hiring Funnel</h2>
             <div className="space-y-4">
               {[
                 { stage: 'Applications Received', count: 156, width: '100%', color: 'bg-emerald-500' },
@@ -159,23 +132,23 @@ export default function ClientDashboard() {
           </div>
 
           {/* Recent Activity */}
-          <div className="rounded-2xl bg-white border-2 border-green-200 p-6 shadow-lg">
+          <div className="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-green-200/50 p-6 shadow-lg hover:shadow-xl transition-shadow">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold">Recent Hires</h2>
-              <button className="text-green-600 font-medium hover:underline">View All</button>
+              <h2 className="text-2xl font-bold text-gray-900">Recent Hires</h2>
+              <button className="text-green-600 font-semibold hover:underline hover:text-green-700 transition-colors">View All</button>
             </div>
             <div className="space-y-4">
               {recentHires.map((hire, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-green-400 hover:bg-green-50 transition-all">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                <div key={idx} className="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200/50 bg-gradient-to-r from-white to-green-50/30 hover:border-green-400 hover:shadow-md transition-all group">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
                     <span className="text-white font-bold text-lg">{hire.name[0]}</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold">{hire.name}</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-green-600 transition-colors">{hire.name}</h3>
                     <p className="text-sm text-gray-600">{hire.role}</p>
                   </div>
                   <div className="text-right">
-                    <div className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 mb-1">
+                    <div className="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 mb-1">
                       {hire.status}
                     </div>
                     <div className="flex items-center gap-1 text-xs text-gray-500">
@@ -208,6 +181,6 @@ export default function ClientDashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }

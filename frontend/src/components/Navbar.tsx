@@ -1,50 +1,71 @@
-import { Link } from 'react-router-dom'
-import { Bell, Settings, User, LogOut, Zap } from 'lucide-react'
+import { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext'
+import { Search, Bell, Sun, Moon, User } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 interface NavbarProps {
   userType: 'candidate' | 'recruiter' | 'client'
 }
 
 export default function Navbar({ userType }: NavbarProps) {
-  const handleLogout = () => {
-    localStorage.removeItem('auth_token')
-    localStorage.removeItem('user_id')
-    window.location.href = '/candidate/login'
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const [darkMode, setDarkMode] = useState(false)
+
+  const getGradient = () => {
+    if (userType === 'candidate') return 'from-purple-600 to-pink-600'
+    if (userType === 'recruiter') return 'from-blue-600 to-indigo-600'
+    return 'from-green-600 to-emerald-600'
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 h-16 backdrop-blur-xl bg-card/95 border-b border-border shadow-sm">
-      <div className="h-full px-6 flex items-center justify-between">
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r ${getGradient()} shadow-lg`}>
+      <div className="h-16 px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link to={`/${userType}`} className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg shadow-primary/20">
-            <Zap className="h-5 w-5 text-white" />
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
+            <span className="text-white font-bold text-xl">B</span>
           </div>
-          <span className="font-heading font-bold text-xl bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-            BHIV HR
-          </span>
-        </Link>
+          <h1 className="text-xl font-bold text-white hidden md:block">BHIV HR Platform</h1>
+        </div>
+
+        {/* Search Bar */}
+        <div className="flex-1 max-w-2xl mx-8 hidden lg:block">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/60" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full pl-12 pr-4 py-2 bg-white/20 backdrop-blur-sm text-white placeholder-white/60 rounded-lg border-2 border-white/30 focus:border-white/60 focus:outline-none transition-all"
+            />
+          </div>
+        </div>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-2">
-          <button className="h-9 w-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors">
-            <Bell className="h-4 w-4" />
-          </button>
-          <button className="h-9 w-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors">
-            <Settings className="h-4 w-4" />
-          </button>
-          <div className="h-8 w-px bg-border mx-2" />
-          <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-muted transition-colors">
-            <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-              <User className="h-4 w-4 text-primary" />
-            </div>
-            <span className="text-sm font-medium capitalize">{userType}</span>
-          </button>
+        <div className="flex items-center gap-3">
+          {/* Theme Toggle */}
           <button
-            onClick={handleLogout}
-            className="h-9 w-9 rounded-lg hover:bg-destructive/10 hover:text-destructive flex items-center justify-center transition-colors"
+            onClick={() => setDarkMode(!darkMode)}
+            className="h-10 w-10 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all"
+            title="Toggle theme"
           >
-            <LogOut className="h-4 w-4" />
+            {darkMode ? <Sun className="h-5 w-5 text-white" /> : <Moon className="h-5 w-5 text-white" />}
+          </button>
+
+          {/* Notifications */}
+          <button className="h-10 w-10 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all relative"
+            title="Notifications">
+            <Bell className="h-5 w-5 text-white" />
+            <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
+          </button>
+
+          {/* User Profile */}
+          <button 
+            onClick={() => navigate(`/${userType}/profile`)}
+            className="h-10 w-10 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all"
+            title={user?.email || 'Profile'}
+          >
+            <User className="h-5 w-5 text-white" />
           </button>
         </div>
       </div>

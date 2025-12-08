@@ -4,8 +4,9 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { getCandidateProfile, updateCandidateProfile } from '../../services/api'
 import FormInput from '../../components/FormInput'
-import { User, Upload, Save, LogOut, Briefcase, Clock, CheckCircle, Award } from 'lucide-react'
+import { User, Save, Briefcase } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
+import Layout from '../../components/Layout'
 
 export default function CandidateProfile() {
   const navigate = useNavigate()
@@ -76,31 +77,17 @@ export default function CandidateProfile() {
   }
 
   return (
-    <div className="max-w-4xl space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-heading text-3xl font-bold mb-2">My Profile</h1>
-          <p className="text-muted-foreground">Manage your personal information</p>
-          {user?.email && (
-            <p className="text-sm text-muted-foreground mt-1">Logged in as: {user.email}</p>
-          )}
-        </div>
-        <div className="flex items-center gap-4">
-          <button
-            onClick={handleLogout}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-destructive/20 text-destructive hover:bg-destructive/10 transition-all"
-          >
-            <LogOut className="h-4 w-4" />
-            Logout
-          </button>
-          <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-            <User className="h-8 w-8 text-primary" />
-          </div>
-        </div>
-      </div>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="rounded-2xl border-2 border-border bg-card p-6 space-y-6">
+    <Layout userType="candidate">
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Personal Information Card */}
+          <div className="rounded-2xl border-2 border-purple-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                <User className="h-5 w-5 text-purple-600" />
+              </div>
+              <h3 className="font-bold text-lg text-gray-900">Personal Information</h3>
+            </div>
           <h3 className="font-semibold text-lg mb-4">Personal Information</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -132,8 +119,14 @@ export default function CandidateProfile() {
           </div>
         </div>
 
-        <div className="rounded-2xl border-2 border-border bg-card p-6 space-y-6">
-          <h3 className="font-semibold text-lg mb-4">Professional Details</h3>
+        {/* Professional Details Card */}
+        <div className="rounded-2xl border-2 border-purple-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+              <Briefcase className="h-5 w-5 text-purple-600" />
+            </div>
+            <h3 className="font-bold text-lg text-gray-900">Professional Details</h3>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormInput
@@ -170,17 +163,19 @@ export default function CandidateProfile() {
           />
         </div>
 
+        {/* Action Buttons */}
         <div className="flex gap-4">
           <button
             type="submit"
             disabled={updateMutation.isPending}
-            className="inline-flex items-center justify-center gap-2 rounded-xl h-12 px-6 text-sm font-bold bg-gradient-to-r from-primary to-primary/90 text-white hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 rounded-xl h-12 px-8 text-sm font-bold bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50"
           >
-            <Save className="h-4 w-4" />
+            <Save className="h-5 w-5" />
             {updateMutation.isPending ? 'Saving...' : 'Save Changes'}
           </button>
         </div>
       </form>
-    </div>
+      </div>
+    </Layout>
   )
 }

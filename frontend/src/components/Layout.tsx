@@ -1,21 +1,42 @@
-import { Outlet } from 'react-router-dom'
+import { ReactNode, useState, createContext, useContext } from 'react'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 
 interface LayoutProps {
-  userType: 'candidate' | 'recruiter' | 'client'
+  children: ReactNode
+  userType?: 'candidate' | 'recruiter' | 'client'
 }
 
-export default function Layout({ userType }: LayoutProps) {
+interface SidebarContextType {
+  collapsed: boolean
+  setCollapsed: (value: boolean) => void
+}
+
+const SidebarContext = createContext<SidebarContextType>({
+  collapsed: false,
+  setCollapsed: () => {},
+})
+
+export const useSidebarContext = () => useContext(SidebarContext)
+
+export default function Layout({ children, userType = 'candidate' }: LayoutProps) {
+  const [collapsed, setCollapsed] = useState(false)
+
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar userType={userType} />
-      <div className="flex">
+    <SidebarContext.Provider value={{ collapsed, setCollapsed }}>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        <Navbar userType={userType} />
         <Sidebar userType={userType} />
-        <main className="flex-1 ml-64 mt-16 p-8">
-          <Outlet />
+        <main 
+          className={`pt-16 transition-all duration-300 ${
+            collapsed ? 'ml-20' : 'ml-64'
+          }`}
+        >
+          <div className="p-8">
+            {children}
+          </div>
         </main>
       </div>
-    </div>
+    </SidebarContext.Provider>
   )
 }
