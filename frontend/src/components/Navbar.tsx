@@ -13,9 +13,9 @@ export default function Navbar({ userType }: NavbarProps) {
   const [darkMode, setDarkMode] = useState(false)
 
   const getGradient = () => {
-    if (userType === 'candidate') return 'from-purple-600 to-pink-600'
-    if (userType === 'recruiter') return 'from-blue-600 to-indigo-600'
-    return 'from-green-600 to-emerald-600'
+    if (userType === 'candidate') return 'from-green-600 to-emerald-600'
+    if (userType === 'recruiter') return 'from-purple-600 to-pink-600'
+    return 'from-blue-600 to-indigo-600'
   }
 
   return (

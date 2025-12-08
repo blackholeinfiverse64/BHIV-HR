@@ -81,10 +81,10 @@ export default function CandidateProfile() {
       <div className="max-w-7xl mx-auto px-6 py-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Personal Information Card */}
-          <div className="rounded-2xl border-2 border-purple-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="rounded-2xl border-2 border-green-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-shadow">
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                <User className="h-5 w-5 text-purple-600" />
+              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
+                <User className="h-5 w-5 text-green-600" />
               </div>
               <h3 className="font-bold text-lg text-gray-900">Personal Information</h3>
             </div>
@@ -120,10 +120,10 @@ export default function CandidateProfile() {
         </div>
 
         {/* Professional Details Card */}
-        <div className="rounded-2xl border-2 border-purple-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-shadow">
+        <div className="rounded-2xl border-2 border-green-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-shadow">
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-              <Briefcase className="h-5 w-5 text-purple-600" />
+            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
+              <Briefcase className="h-5 w-5 text-green-600" />
             </div>
             <h3 className="font-bold text-lg text-gray-900">Professional Details</h3>
           </div>
@@ -168,7 +168,7 @@ export default function CandidateProfile() {
           <button
             type="submit"
             disabled={updateMutation.isPending}
-            className="inline-flex items-center justify-center gap-2 rounded-xl h-12 px-8 text-sm font-bold bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 rounded-xl h-12 px-8 text-sm font-bold bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:shadow-xl hover:shadow-green-500/30 hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50"
           >
             <Save className="h-5 w-5" />
             {updateMutation.isPending ? 'Saving...' : 'Save Changes'}

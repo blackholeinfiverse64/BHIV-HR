@@ -50,15 +50,15 @@ export default function Sidebar({ userType }: SidebarProps) {
   const links = userType === 'candidate' ? candidateLinks : userType === 'recruiter' ? recruiterLinks : clientLinks
 
   const getGradient = () => {
-    if (userType === 'candidate') return 'from-purple-600 to-pink-600'
-    if (userType === 'recruiter') return 'from-blue-600 to-indigo-600'
-    return 'from-green-600 to-emerald-600'
+    if (userType === 'candidate') return 'from-green-600 to-emerald-600'
+    if (userType === 'recruiter') return 'from-purple-600 to-pink-600'
+    return 'from-blue-600 to-indigo-600'
   }
 
   const getActiveColor = () => {
-    if (userType === 'candidate') return 'bg-purple-100 text-purple-700 border-purple-300'
-    if (userType === 'recruiter') return 'bg-blue-100 text-blue-700 border-blue-300'
-    return 'bg-green-100 text-green-700 border-green-300'
+    if (userType === 'candidate') return 'bg-green-100 text-green-700 border-green-300'
+    if (userType === 'recruiter') return 'bg-purple-100 text-purple-700 border-purple-300'
+    return 'bg-blue-100 text-blue-700 border-blue-300'
   }
 
   return (

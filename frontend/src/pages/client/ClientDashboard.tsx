@@ -86,7 +86,7 @@ export default function ClientDashboard() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {stats.map((stat, idx) => (
-            <div key={idx} className={`rounded-2xl border-2 ${stat.border}/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all`}>
+            <div key={idx} className="rounded-2xl border-2 border-blue-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all">
               <div className="flex flex-col items-center text-center">
                 <div className={`h-14 w-14 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-3 shadow-md`}>
                   <stat.icon className="h-7 w-7 text-white" />
@@ -105,7 +105,7 @@ export default function ClientDashboard() {
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Hiring Funnel */}
-          <div className="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-green-200/50 p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-blue-200/50 p-6 shadow-lg hover:shadow-xl transition-shadow">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Hiring Funnel</h2>
             <div className="space-y-4">
               {[
@@ -132,23 +132,23 @@ export default function ClientDashboard() {
           </div>
 
           {/* Recent Activity */}
-          <div className="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-green-200/50 p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-blue-200/50 p-6 shadow-lg hover:shadow-xl transition-shadow">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Recent Hires</h2>
               <button className="text-green-600 font-semibold hover:underline hover:text-green-700 transition-colors">View All</button>
             </div>
             <div className="space-y-4">
               {recentHires.map((hire, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200/50 bg-gradient-to-r from-white to-green-50/30 hover:border-green-400 hover:shadow-md transition-all group">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                <div key={idx} className="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200/50 bg-gradient-to-r from-white to-blue-50/30 hover:border-blue-400 hover:shadow-md transition-all group">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
                     <span className="text-white font-bold text-lg">{hire.name[0]}</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-gray-900 group-hover:text-green-600 transition-colors">{hire.name}</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{hire.name}</h3>
                     <p className="text-sm text-gray-600">{hire.role}</p>
                   </div>
                   <div className="text-right">
-                    <div className="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 mb-1">
+                    <div className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 mb-1">
                       {hire.status}
                     </div>
                     <div className="flex items-center gap-1 text-xs text-gray-500">
@@ -163,7 +163,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Performance Metrics */}
-        <div className="rounded-2xl bg-white border-2 border-green-200 p-6 shadow-lg">
+        <div className="rounded-2xl bg-white border-2 border-blue-200 p-6 shadow-lg">
           <h2 className="text-2xl font-bold mb-6">Performance Metrics</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
