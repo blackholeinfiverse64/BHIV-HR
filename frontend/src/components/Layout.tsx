@@ -24,12 +24,12 @@ export default function Layout({ children, userType = 'candidate' }: LayoutProps
 
   return (
     <SidebarContext.Provider value={{ collapsed, setCollapsed }}>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-gray-50/50">
         <Navbar userType={userType} />
         <Sidebar userType={userType} />
         <main 
           className={`pt-16 transition-all duration-300 ${
-            collapsed ? 'ml-20' : 'ml-64'
+            collapsed ? 'ml-16' : 'ml-64'
           }`}
         >
           <div className="p-8">
